@@ -2,6 +2,20 @@ const UserModel = require("../models/user.models");
 
 exports.createUser = async (req, res) => {
   try {
+    const firstName =req.body.firstName
+    const lastName = req.body.lastName
+    const email = req.body.email
+    const password = req.body.password
+    if(!firstName || !lastName || !email || !password){
+        return res.status(200).json({
+            code: 200,
+            success: false,
+            status: "Bad request",
+            message: "pls Fill all field",
+            
+          });
+    }
+
     console.log(req.body);
     const newUser = new UserModel({
       firstName: req.body.firstName,
