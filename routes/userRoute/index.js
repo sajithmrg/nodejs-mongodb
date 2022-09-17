@@ -15,4 +15,5 @@ routes.get("/stateLogin",stateController.stateLogin)
 routes.get("/stateAll",stateController.stateAll)
 routes.put("/updateState/:id",stateController.updateState)
 routes.delete("/deleteState/:id",stateController.deleteState)
+routes.get("/findState/:id",stateController.findState)
 module.exports = routes;
