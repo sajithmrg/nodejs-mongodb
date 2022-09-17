@@ -115,3 +115,71 @@ exports.stateAll = async (req,res) =>{
           });
     }
 }
+
+exports.updateState = async (req,res) =>{
+    try {
+        const id = req.params.id
+        const newState = {
+      stateName: req.body.stateName,
+      stateAddress: req.body.stateAddress,
+      stateCatogery: req.body.stateCatogery,
+      stateAcre: req.body.stateAcre,
+      statePlants: req.body.statePlants,
+        }
+        const state = await stateModel.findByIdAndUpdate(id,newState,{new:true})
+        if(state){
+            return res.status(200).json({
+                code: 200,
+                success: true,
+                status: "OK",
+                message: "User Updated",
+                data: state,
+              });
+        }else{
+            return res.status(200).json({
+                code: 200,
+                success: false,
+                status: "bad request",
+                message: "Invalied user id",
+              }); 
+        }
+    } catch (error) {
+        return res.status(500).json({
+            code: 500,
+            success: false,
+            status: "internal server error",
+            message: error.message,
+          });
+    }
+}
+exports.deleteState = async (req,res) =>{
+    try {
+        const id = req.params.id
+        const state = await stateModel.findByIdAndDelete(id)
+        if(state){
+            return res.status(200).json({
+                code: 200,
+                success: true,
+                status: "OK",
+                message: "state deleted"
+                
+              });
+        }
+        else{
+            return res.status(200).json({
+                code: 200,
+                success: false,
+                status: "bad request",
+                message: "Invalied state id",
+              }); 
+        }
+    } catch (error) {
+        return res.status(500).json({
+            code: 500,
+            success: false,
+            status: "internal server error",
+            message: error.message,
+          });
+    }
+
+}
