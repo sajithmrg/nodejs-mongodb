@@ -10,11 +10,11 @@ routes.delete("/userDelete/:id",userController.deleteUser)
 routes.get("/findUserById/:id",userController.findUserById)
 
 // state fuction
-routes.post("/createState",stateController.createState)
-routes.get("/stateLogin",stateController.stateLogin) 
-routes.get("/stateAll",stateController.stateAll)
-routes.put("/updateState/:id",stateController.updateState)
-routes.delete("/deleteState/:id",stateController.deleteState)
-routes.get("/findState/:id",stateController.findState)
-routes.get("/findStateCategory/:key",stateController.findStateCategory)
+// routes.post("/createState",stateController.createState)
+// routes.get("/stateLogin",stateController.stateLogin) 
+// routes.get("/stateAll",stateController.stateAll)
+// routes.put("/updateState/:id",stateController.updateState)
+// routes.delete("/deleteState/:id",stateController.deleteState)
+// routes.get("/findState/:id",stateController.findState)
+// routes.get("/findStateCategory",stateController.findStateCategory)
 module.exports = routes;

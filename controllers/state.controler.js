@@ -213,36 +213,72 @@ exports.findState = async (req,res) =>{
    }
 }
 
+// exports.findStateCategory = async (req,res) =>{
+//     try {
+//         const key = req.params.key
+//         console.log(key)
+//         const result = await stateModel.find({"$or":[
+//            {stateCatogery:{$regex: key ,$options:'i'}}
+//         ]});
+//         console.log(result)
+//         if(result){
+//             return res.status(200).json({
+//                 code: 200,
+//                 success: true,
+//                 status: "OK",
+//                 message: "state found",
+//                 data:result
+//               });
+//         }else{
+//             return res.status(200).json({
+//                 code: 200,
+//                 success: false,
+//                 status: "bad request",
+//                 message: "Invalied catogery",
+//               });
+//         }
+//     } catch (error) {
+//         return res.status(500).json({
+//             code: 500,
+//             success: false,
+//             status: "internal server error",
+//             message: error.message,
+//           });
+//     }
+// }
 exports.findStateCategory = async (req,res) =>{
-    try {
-        const key = req.params.key
-        console.log(key)
-        const result = await stateModel.find({"$or":[
-           {stateCatogery:{$regex: key ,$options:'i'}}
-        ]});
-        console.log(result)
-        if(result){
-            return res.status(200).json({
-                code: 200,
-                success: true,
-                status: "OK",
-                message: "state found",
-                data:result
-              });
-        }else{
-            return res.status(200).json({
-                code: 200,
-                success: false,
-                status: "bad request",
-                message: "Invalied catogery",
-              });
-        }
-    } catch (error) {
-        return res.status(500).json({
-            code: 500,
+  try {
+      var category = req.body.catogery
+      console.log(category)
+      stateModel.find({
+        stateCatogery:category
+      }).then((data) =>{
+        if(!data){
+          return res.status(200).json({
+            code: 200,
             success: false,
-            status: "internal server error",
-            message: error.message,
+            status: "bad request",
+            message: "Invalied state found",
           });
-    }
+        }else{
+          return res.status(200).json({
+            code: 200,
+            success: true,
+            status: "OK",
+            message: "state found",
+            data:data
+          });
+        }
+      })
+      
+      
+      
+  } catch (error) {
+      return res.status(500).json({
+          code: 500,
+          success: false,
+          status: "internal server error",
+          message: error.message,
+        });
+  }
 }
