@@ -32,7 +32,7 @@ exports.calProfit = async(req,res) =>{
                   code: 200,
                   success: true,
                   status: "OK",
-                  message: "state created successfuly",
+                  message: "profit create successfuly",
                   data: newProfit,
                 });
                 
