@@ -12,7 +12,7 @@ const incomeSchema = new Schema({
    },
    profit:{
         type:Number,
-        required:false,
+        required:true,
    }
 
 })

@@ -5,7 +5,7 @@ exports.calProfit = async(req,res) =>{
         try {
             const totalIncome = req.body.totalIncome;
             const totalCost = req.body.totalCost;
-            const profit = req.body.profit;
+          //  const profit = req.body.profit;
             
         
             if (
@@ -27,7 +27,7 @@ exports.calProfit = async(req,res) =>{
                 
                 });
                 await newProfit.save()
-                console.log(profit);
+            
                 return res.status(200).json({
                   code: 200,
                   success: true,

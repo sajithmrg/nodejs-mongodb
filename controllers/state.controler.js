@@ -134,7 +134,7 @@ exports.updateState = async (req, res) => {
         code: 200,
         success: true,
         status: "OK",
-        message: "User Updated",
+        message: "state Updated",
         data: state,
       });
     } else {
@@ -142,7 +142,7 @@ exports.updateState = async (req, res) => {
         code: 200,
         success: false,
         status: "bad request",
-        message: "Invalied user id",
+        message: "Invalied state id",
       });
     }
   } catch (error) {
