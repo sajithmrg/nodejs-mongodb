@@ -21,9 +21,9 @@ exports.calProfit = async(req,res) =>{
               });
             }
             const newProfit = new incomeModel({
-                totalIncome:parseInt(req.body.totalIncome),
-                totalCost:parseInt(req.body.totalCost),
-                profit:Number(totalIncome-totalCost)
+                totalIncome:req.body.totalIncome,
+                totalCost:req.body.totalCost,
+                profit:Number(totalIncome-totalCost).toFixed(2)
                 
                 });
                 await newProfit.save()

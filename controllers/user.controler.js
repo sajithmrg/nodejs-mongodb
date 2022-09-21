@@ -2,7 +2,7 @@ const UserModel = require("../models/user.models");
 const { userRegistrationValidation } = require("../validation");
 const { loginValidation } = require("../validation");
 const bcrypt = require("bcrypt");
-const utils = require("../lib/utils")
+const utils = require("../lib/utils");
 
 exports.createUser = async (req, res) => {
   try {
@@ -48,24 +48,24 @@ exports.createUser = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-   const user =  await newUser.save();
+    const user = await newUser.save();
     //token create
-    const token = utils.generateAuthToken(user)
+    const token = utils.generateAuthToken(user);
     console.log("success");
-    if(!user){
+    if (!user) {
       return res.status(200).json({
         code: 200,
         success: false,
         status: "bad request",
         message: "not success",
       });
-    }else{
+    } else {
       return res.status(200).json({
         code: 200,
         success: true,
         status: "OK",
-        token:token.token,
-        expireIn:token.expires,
+        token: token.token,
+        expireIn: token.expires,
         data: token.sub,
         message: "user created successfuly",
       });
@@ -107,10 +107,10 @@ exports.loginUser = async (req, res) => {
         message: "not valied user",
       });
     }
-    const token = utils.generateAuthToken(user)
+    const token = utils.generateAuthToken(user);
     const validPassword = await bcrypt.compare(
       req.body.password,
-      user.password
+      user.password //110,111,112,113 line ask
     );
     if (!validPassword) {
       return res.status(200).json({
@@ -124,11 +124,10 @@ exports.loginUser = async (req, res) => {
         code: 200,
         success: true,
         status: "OK",
-        token:token.token,
-        expireIn:token.expires,
-        data:token.sub,
+        token: token.token,
+        expireIn: token.expires,
+        data: token.sub,
         message: "user found",
-       
       });
     }
   } catch (error) {
@@ -142,7 +141,7 @@ exports.loginUser = async (req, res) => {
 };
 exports.getAllUsers = async (req, res) => {
   try {
-    console.log(req.jwt.sub.id)
+    console.log(req.jwt.sub.id);
     const users = await UserModel.find();
     if (!users) {
       return res.status(200).json({
@@ -163,7 +162,7 @@ exports.getAllUsers = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       code: 500,
-      success: flase,
+      success: false,
       status: "internal server error",
       message: error.message,
     });

@@ -6,7 +6,7 @@ const utils =require("../../lib/utils")
 routes.post("/createUser",userController.createUser)
 routes.get("/loginUser",userController.loginUser)
 routes.get("/getAllUsers",utils.authMiddleware,userController.getAllUsers)
-routes.put("/updateUser/:id",userController.updateUser)
+routes.put("/updateUser/:id",utils.authMiddleware,userController.updateUser)
 routes.delete("/userDelete/:id",userController.deleteUser)
 routes.get("/findUserById/:id",userController.findUserById)
 
